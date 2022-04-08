@@ -2,14 +2,14 @@
 
 This repo contains a very basic Terraform configuration to provision a Cloud Run application on Google Cloud. We wil deploy a simple "hello" container image to Google Cloud Run and make it available publicly for consumption.
 
-##### Before you begin, please make sure to do the following:
+Before you begin, please make sure to do the following:
 
 1. You have a Google Cloud project created.
 2. You have a Google account with Project Owner permissions (for real-life scenario, the best practice is to follow the principle of least privileges, however for the demo purposes here, we will just use an account with Project Owner primitive role assigned it)
 3. Login to the Google Cloud console using the account having Project Owner permissions and make sure you select the right project.
 4. Activate the Google Cloud shell using the icon at the right hand side of the browser window.
 
-##### Once you are into Google Cloud shell terminal:
+Once you are into Google Cloud shell terminal:
 
 Run the command
 ```
@@ -17,11 +17,11 @@ gcloud auth list
 ```
 Make sure that the active account is same as the one you logged in with.
 
-##### Next, run the following command to make sure the default configurations are set correctly
+Next, run the following command to make sure the default configurations are set correctly
 ```
 gcloud config list
 ```
-##### Here, you can verify if the project is the one you intend to use for provisioning the Cloud Run service. If not, you can always change it using
+Here, you can verify if the project is the one you intend to use for provisioning the Cloud Run service. If not, you can always change it using
 ```
 gcloud config set project <your-project-name>
 ```
@@ -29,17 +29,25 @@ Google provider for Terraform makes use of Application Default Credentials or AD
 
 To learn more about Google Cloud ADC, follow this [link](https://cloud.google.com/docs/authentication/production)
 
-##### For Google Cloud client libraries to use ADC defaults, make sure that ADCs are up-to date and using right project, account and billing context, run the following command if you are running gcloud SDK locally and gcloud has access to a web-browser, follow along the instructions
+For Google Cloud client libraries to use ADC defaults, make sure that ADCs are up-to date and using right project, account and billing context, run the following command if you are running gcloud SDK locally and gcloud has access to a web-browser, follow along the instructions
 ```
 gcloud auth application-default login
 ```
-##### If your machine do not have access to a web browser, such as cloud shell instance, use this command instead and follow the instructions
+If your machine do not have access to a web browser, such as cloud shell instance, use this command instead and follow the instructions
 ```  
 gcloud auth login --activate --no-launch-browser --quiet --update-adc
 ```  
-Once, ADCs are updated, next clone the repo locally using git CLI.
+Once, ADCs are updated, next clone the repo locally using the git CLI.
 
-Locally, in the root directory, create a file called terraform.tfvar and include your project and the Google Cloud region where the Cloud Run service will be deployed, optionally you can use variables on the command line while invoking terraform apply
+```
+git clone https://github.com/rmishgoog/google-cloud-managed-cloud-run-terraform.git
+```
+Change to the root directory
+
+```
+cd google-cloud-managed-cloud-run-terraform
+```
+Here, create a file called terraform.tfvar and include your project and the Google Cloud region where the Cloud Run service will be deployed, optionally you can use variables on the command line while invoking terraform apply
 
 ```
 project = "<your-project-name"
