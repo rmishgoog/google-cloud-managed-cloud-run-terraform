@@ -4,9 +4,9 @@ This repo contains a very basic Terraform configuration to provision a Cloud Run
 
 Before you begin, please make sure to do the following:
 
-1. You have a Google Cloud project created.
-2. You have a Google account with Project Owner permissions (for real-life scenario, the best practice is to follow the principle of least privileges, however for the demo purposes here, we will just use an account with Project Owner primitive role assigned it)
-3. Login to the Google Cloud console using the account having Project Owner permissions and make sure you select the right project.
+1. You have a Google Cloud project created or as a Project Owner, create a new project.
+2. You have a Google account with Project Owner permissions (for real-life scenario, the best practice is to follow the principle of least privileges, however for the demo purposes here, we will just use an account with Project Owner primitive role assigned to it).
+3. Login to the Google Cloud console using the account having Project Owner permissions and make sure you select the right project from the drop down menu.
 4. Activate the Google Cloud shell using the icon at the right hand side of the browser window.
 
 Once you are into Google Cloud shell terminal:
