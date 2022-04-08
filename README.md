@@ -39,7 +39,7 @@ gcloud auth login --activate --no-launch-browser --quiet --update-adc
 ```  
 Once, ADCs are updated, next clone the repo locally using git CLI.
 
-Locally, in the root directory, create a ######terraform.tfvars###### and include your project and the Google Cloud region where the Cloud Run service will be deployed, optionally you can use variables on the command line while invoking terraform apply
+Locally, in the root directory, create a file called terraform.tfvar and include your project and the Google Cloud region where the Cloud Run service will be deployed, optionally you can use variables on the command line while invoking terraform apply
 
 ```
 project = "<your-project-name"
