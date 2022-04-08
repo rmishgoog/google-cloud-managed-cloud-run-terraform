@@ -9,6 +9,9 @@ Before you begin, please make sure to do the following:
 3. Login to the Google Cloud console using the account having Project Owner permissions and make sure you select the right project from the drop down menu.
 4. Activate the Google Cloud shell using the icon at the right hand side of the browser window.
 
+![image](https://user-images.githubusercontent.com/102101947/162500749-2bed73b5-61c4-4f5f-b9a8-27358e3896dd.png)
+
+
 Once you are into Google Cloud shell terminal:
 
 Run the command
