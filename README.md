@@ -53,7 +53,7 @@ cd google-cloud-managed-cloud-run-terraform
 Here, create a file called terraform.tfvar and include your project and the Google Cloud region where the Cloud Run service will be deployed, optionally you can use variables on the command line while invoking terraform apply
 
 ```
-project = "<your-project-name"
+project = "<your-project-name>"
 region  = "<your-google-cloud-region"
 ```
 Save the terraform.tfvars file.
