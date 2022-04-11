@@ -54,9 +54,9 @@ Here, create a file called terraform.tfvar and include your project and the Goog
 
 ```
 project = "<your-project-name>"
-region  = "<your-google-cloud-region"
+region  = "<your-google-cloud-region>"
 ```
-Save the terraform.tfvars file.
+Cloud Run is available in almost all Google Cloud regions, for this demo, you may use us-central1 or us-east1. Save the terraform.tfvars file.
 
 Next run the terraform command to init the environment, this is when terraform will download the provider plugins etc.
 
