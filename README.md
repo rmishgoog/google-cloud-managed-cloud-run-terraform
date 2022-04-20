@@ -2,12 +2,12 @@
 
 This repo contains a very basic Terraform configuration to provision a Cloud Run application on Google Cloud. We wil deploy a simple "hello" container image to Google Cloud Run and make it available publicly for consumption.
 
-Before you begin, please make sure to do the following:
+Before you begin, please make sure you do the following:
 
-1. You have a Google Cloud project created or as a Project Owner, create a new project.
-2. You have a Google account with Project Owner permissions (for real-life scenario, the best practice is to follow the principle of least privileges, however for the demo purposes here, we will just use an account with Project Owner primitive role assigned to it).
-3. Login to the Google Cloud console using the account having Project Owner permissions and make sure you select the right project from the drop down menu.
-4. Activate the Google Cloud shell using the icon at the right hand side of the browser window.
+1. Create a Google Cloud project, you will need a Google account with "project owner" permissions or you can use an existing project, as long as your account has "project owner" or "project editor" permissions on the project.
+2. It is always a best practice to follow principle of least privileges, this is only a demonstration and thus for simplyfying the things we will be using a more permissive role like "project owner" or "project editor", however for your envioronments, always choose security over convinience!
+3. Now that you have the account with you, log-in to the Google Cloud console, either create a new project (needs a unique name) or choose and existing project where you have the required permissions (owner or editor), from the project dropdown at the top of your Google Cloud console.
+4. Activate the Google Cloud shell using the icon at the right hand side of the browser window. We will run this demo from Google Cloud shell, it comes installed with some of the tools and utilities we will be using in this demo, including Terraform! If you want to run this from your workstation, make sure you have gcloud SDK installed along with Terraform. Rest of the guide will follow Google Cloud Shell but commands shall also work with any workstation with gcloud SDK and Terraform installed on it.
 
 ![image](https://user-images.githubusercontent.com/102101947/162500749-2bed73b5-61c4-4f5f-b9a8-27358e3896dd.png)
 
@@ -24,15 +24,15 @@ Next, run the following command to make sure the default configurations are set 
 ```
 gcloud config list
 ```
-Here, you can verify if the project is the one you intend to use for provisioning the Cloud Run service. If not, you can always change it using
+Here, you can verify if the project is the one you intend to use for provisioning the Cloud Run service. If not, you can always change it using. This is very important to avoid issues down the line, you want to provision services in the right project, where you have the needed IAM roles and permissions.
 ```
 gcloud config set project <your-project-name>
 ```
-Google provider for Terraform makes use of Application Default Credentials or ADC by default, you can also choose to configure a credentials file in JSON format instead having private keys of the service account you want Terraform to use OR once you have the key file, you can set GOOGLE_APPLICATION_CREDENTIALS environment variable with the value as the absolute path to the key file. Here, for convinience we will just use the ADC defaults.
+Google provider for Terraform makes use of Application Default Credentials or ADC by default, you can also choose to configure a credentials file in JSON format having the private keys of the service account you want Terraform to use if you do not want to execute Terraform code with your credentials, once you have the key file, you can set GOOGLE_APPLICATION_CREDENTIALS environment variable with the value as the absolute path to the key file. Here, for convinience we will just use the ADC defaults as we update them in the next few steps.
 
 To learn more about Google Cloud ADC, follow this [link](https://cloud.google.com/docs/authentication/production)
 
-For Google Cloud client libraries to use ADC defaults, make sure that ADCs are up-to date and using right project, account and billing context, run the following command if you are running gcloud SDK locally and gcloud has access to a web-browser, follow along the instructions
+For Google Cloud client libraries to use ADC defaults, make sure that ADCs are up-to date and using right project, billing account and context, run the following command if you are running gcloud SDK locally and gcloud has access to a web-browser, follow the instructions, you maybe asked to login with your credentials in a browser pop-up, provide the credentials for the account (the account will be the same as the one you used to login to Google Cloud console):
 ```
 gcloud auth application-default login
 ```
@@ -58,17 +58,17 @@ region  = "<your-google-cloud-region>"
 ```
 Cloud Run is available in almost all Google Cloud regions, for this demo, you may use us-central1 or us-east1. Save the terraform.tfvars file.
 
-Next run the terraform command to init the environment, this is when terraform will download the provider plugins etc.
+Next run the terraform command to init the environment, this is when Terraform will download the provider plugins etc.
 
 ```
 terraform init
 ```
-Then generate the terraform plan:
+Then generate the terraform plan, it will show the resources that will be created when the current state configuration is applied, at this point in time, state is not persisted by Terraform:
 
 ```
 terraform plan
 ```
-Lastly, apply the plan generated by terraform. If you do not want to be prompted, use the -auto-approve flag, if you do not use it, terraform will prompt for an approval before provisioning the resources, respond 'yes'.
+Lastly, apply the plan generated by Terraform. If you do not want to be prompted, use the -auto-approve flag, if you do not use it, Terraform will prompt for an approval before provisioning the resources, respond 'yes'.
 
 ```
 terraform apply -auto-approve
@@ -80,5 +80,7 @@ Once done with all the testing, destroy the infrastructure you created.
 ```
 terraform destroy -auto-approve
 ```
-
-  
+Or
+```
+terraform apply -destroy -auto-approve
+```
